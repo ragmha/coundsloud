@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 const Stream = ({ tracks = [] }) => (
 	<div>
 		{tracks.map((track, key) => (
-			<div className="track" key={key}>
+			<div key={key} className="track">
 				{track.title}
 			</div>
 		))}
