@@ -13,14 +13,18 @@ export const connectSC = () => {
   });
 };
 
-export const fetchSCUser = session =>
-  fetch(`//api.soundcloud.com/me?oauth_token=${session.oauth_token}`)
-    .then(res => res.json())
-    .catch(err => console.error(err));
+export const fetchSCUser = async session => {
+  const response = await fetch(
+    `//api.soundcloud.com/me?oauth_token=${session.oauth_token}`
+  );
 
-export const fetchStream = (me, session) =>
-  fetch(
+  return await response.json();
+};
+
+export const fetchStream = async (me, session) => {
+  const response = await fetch(
     `//api.soundcloud.com/me/activities?limit=20&offset=0&oauth_token=${session.oauth_token}`
-  )
-    .then(res => res.json())
-    .catch(err => console.error(err));
+  );
+
+  return await response.json();
+};

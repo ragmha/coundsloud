@@ -17,7 +17,6 @@ if (process.env.NODE_ENV !== 'production') {
 const configureStore = () => {
   const store = createStore(
     rootReducer,
-    undefined,
     composeWithDevTools(applyMiddleware(...middleware))
   );
   sagaMiddleware.run(watchForAuthScUser);
