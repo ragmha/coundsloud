@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Stream = ({ tracks = [] }) => (
 	<div>
 		{tracks.map((track, key) => (
-			<div key={key} className="track">
+			<div className="track" key={key}>
 				{track.title}
 			</div>
 		))}
