@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
 import Stream from './Stream';
+import { bindActionCreators } from 'redux';
+import * as actions from '../../actions';
 
 /* returns a substate of the global state */
 function mapStateToProps(state) {
@@ -9,4 +11,10 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Stream);
+function mapDispatchToProps(dispatch) {
+  return {
+    onAuth: bindActionCreators(actions.authSCuser, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Stream);

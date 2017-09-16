@@ -1,3 +1,4 @@
+import { authSCuser } from './auth';
 import { setTracks } from './track';
 
-export { setTracks };
+export { authSCuser, setTracks };

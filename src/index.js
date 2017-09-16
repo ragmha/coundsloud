@@ -1,11 +1,14 @@
+/* eslint-disable */
+import SC from 'soundcloud';
+/* eslint-enable */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-
+import { BrowserRouter } from 'react-router-dom';
 import configureStore from './stores/configureStore';
 import * as actions from './actions';
 
-import Stream from './components/Stream/';
+import App from './components/App/';
 
 const tracks = [
   { title: 'Track-1' },
@@ -18,7 +21,13 @@ store.dispatch(actions.setTracks(tracks));
 
 ReactDOM.render(
   <Provider store={store}>
-    <Stream />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );
+
+if (module.hot) {
+  module.hot.accept();
+}

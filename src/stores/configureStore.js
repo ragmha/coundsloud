@@ -1,27 +1,26 @@
 import { createStore, applyMiddleware } from 'redux';
-import { createLogger } from 'redux-logger';
+// import { createLogger } from 'redux-logger';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from '../reducers/';
 
-const middleware = [];
+import createSagaMiddleware from 'redux-saga';
+import { watchForAuthScUser } from '../sagas';
+
+const sagaMiddleware = createSagaMiddleware();
+
+const middleware = [sagaMiddleware];
 
 if (process.env.NODE_ENV !== 'production') {
-  middleware.push(createLogger());
+  // middleware.push(createLogger());
 }
 
-const configureStore = preLoadedState => {
+const configureStore = () => {
   const store = createStore(
     rootReducer,
-    preLoadedState,
-    applyMiddleware(...middleware)
+    undefined,
+    composeWithDevTools(applyMiddleware(...middleware))
   );
-
-  // Enabling Webpack for HMR for reducers ;)
-  if (module.hot) {
-    module.hot.accept('../reducers', () => {
-      const nextRootReducer = require('../reducers').default;
-      store.replaceReducer(nextRootReducer);
-    });
-  }
+  sagaMiddleware.run(watchForAuthScUser);
 
   return store;
 };
