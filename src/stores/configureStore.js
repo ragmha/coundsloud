@@ -4,7 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from '../reducers/';
 
 import createSagaMiddleware from 'redux-saga';
-import { watchForAuthScUser } from '../sagas';
+import rootSaga from '../sagas/index';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -19,7 +19,7 @@ const configureStore = () => {
     rootReducer,
     composeWithDevTools(applyMiddleware(...middleware))
   );
-  sagaMiddleware.run(watchForAuthScUser);
+  sagaMiddleware.run(rootSaga);
 
   return store;
 };

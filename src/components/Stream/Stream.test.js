@@ -4,14 +4,7 @@ import { shallow } from 'enzyme';
 
 describe('Stream', () => {
   const props = {
-    tracks: [
-      {
-        title: 'Nothing Lasts Forevers',
-      },
-      {
-        title: 'Maera',
-      },
-    ],
+    tracks: [{ origin: { title: 'x' } }, { origin: { title: 'y' } }],
   };
 
   it('shows two elements', () => {

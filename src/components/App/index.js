@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div>
         <Switch>
-          <Route exact path={'/stream'} component={Stream} />
+          <Route exact path={'/'} component={Stream} />
           <Route exact path={'/callback'} component={Callback} />
         </Switch>
       </div>

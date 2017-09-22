@@ -5,15 +5,21 @@ import * as actions from '../../actions';
 
 /* returns a substate of the global state */
 function mapStateToProps(state) {
-  const tracks = state.track;
+  const { user, session } = state.auth;
+  const { tracks, activeTrack } = state.track;
   return {
+    user,
+    session,
     tracks,
+    activeTrack,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onAuth: bindActionCreators(actions.authSCuser, dispatch),
+    onLogIn: bindActionCreators(actions.logInSCuser, dispatch),
+    onLogOut: bindActionCreators(actions.logOutSCuser, dispatch),
+    onPlay: bindActionCreators(actions.playTrack, dispatch),
   };
 }
 

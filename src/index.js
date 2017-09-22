@@ -6,18 +6,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from './stores/configureStore';
-import * as actions from './actions';
 
 import App from './components/App/';
 
-const tracks = [
-  { title: 'Track-1' },
-  { title: 'Track-2' },
-  { title: 'Track-3' },
-];
-
 const store = configureStore();
-store.dispatch(actions.setTracks(tracks));
 
 ReactDOM.render(
   <Provider store={store}>

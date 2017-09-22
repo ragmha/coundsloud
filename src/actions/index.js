@@ -1,4 +1,10 @@
-import { authSCuser } from './auth';
-import { setTracks } from './track';
+export {
+  logInSCuser,
+  logOutSCuser,
+  setSession,
+  resetSession,
+  setUser,
+  setUserFailure,
+} from './auth';
 
-export { authSCuser, setTracks };
+export { setTracks, playTrack } from './track';
