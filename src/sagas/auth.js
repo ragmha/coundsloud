@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
-import { put, take, call, fork, delay, race } from 'redux-saga/effects';
+import { put, take, call, fork, race } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 
 import { OAUTH_TOKEN } from '../constants/auth';
 
@@ -24,9 +25,11 @@ import { setTracks } from '../actions/track';
 function* login() {
   try {
     const session = yield connectSC();
+    // localStorage.setItem(OAUTH_TOKEN, session.oauth_token);
     Cookies.set(OAUTH_TOKEN, session.oauth_token);
     yield put(setSession(session));
     const user = yield call(fetchSCUser, session);
+
     yield put(setUser(user));
     const stream = yield call(fetchStream, session);
     const tracks = stream.collection;
